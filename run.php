@@ -19,13 +19,13 @@ if ($js->is_user_present == 0){
   $reff = trim(fgets(STDIN));
   $regis = register($phone_number, $fullname, $email, $otp, $reff);
   $js2 = json_decode($regis);
-  if($js2->success == 1){
-    echo color($color = "green" , "[+] Your registration was successfully!!\n");
-    goto ulang;
-  } else {
+  if($js2->success == 0){
     $err = $js2->error->message;
     echo color($color = "red" , "[x] $err\n");
     exit();
+  } else {
+    echo color($color = "green" , "[+] Your registration was successfully!!\n\n");
+    goto ulang;
   }
 } else {
   echo color($color = "red" , "[x] Phone number has been registered\n\n");
@@ -55,7 +55,7 @@ function get_otp($phone_number){
   return $result;
 }
 
-function register($phone_number, $fullname, $email, $reff, $otp){
+function register($phone_number, $fullname, $email, $otp, $reff){
   $ch = curl_init();
 
   curl_setopt($ch, CURLOPT_URL, 'https://api.oyorooms.com/v2/users/new_sign_up?additional_fields=ab_service_data&handset=samsung%2C%20SM-N950N&version=20233&partner_app_version=20233&android_id='.randstr(16).'&idfa='.gen_uuid().'&sid='.randnumber().'');
