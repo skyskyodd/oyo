@@ -18,13 +18,12 @@ if ($js->is_user_present == 0){
   echo "[?] Input refferal : ";
   $reff = trim(fgets(STDIN));
   $regis = register($phone_number, $fullname, $email, $otp, $reff);
-  $js2 = json_decode($regis);
-  if($js2->success == 0){
-    echo color($color = "red" , "[x] Your registration failed!!\n");
-    exit();
-  } else {
+  if(isset($regis->user_id)){
     echo color($color = "green" , "[+] Your registration was successfully!!\n\n");
     goto ulang;
+  } else {
+    echo color($color = "red" , "[x] Your registration failed!!\n");
+    exit();
   }
 } else {
   echo color($color = "red" , "[x] Phone number has been registered\n\n");
