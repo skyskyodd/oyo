@@ -20,8 +20,7 @@ if ($js->is_user_present == 0){
   $regis = register($phone_number, $fullname, $email, $otp, $reff);
   $js2 = json_decode($regis);
   if($js2->success == 0){
-    $err = $js2->error->message;
-    echo color($color = "red" , "[x] $err\n");
+    echo color($color = "red" , "[x] Your registration failed\n");
     exit();
   } else {
     echo color($color = "green" , "[+] Your registration was successfully!!\n\n");
