@@ -5,6 +5,7 @@ $users = nama();
 $js = json_decode($users, true);
 $fullname = $js['name']." ".$js['surname'];
 $email = $js['name'].rand(10,99999)."@gmail.com";
+$nohp = "08811200912";
 no:
 echo "[?] Input phone number : ";
 $phone_number = trim(fgets(STDIN));
