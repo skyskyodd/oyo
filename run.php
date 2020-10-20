@@ -2,6 +2,7 @@
 echo color($color = "blue" , "Auto Create OYO Account\n\n");
 ulang:
 $users = nama();
+$id = "kucing11";
 $js = json_decode($users, true);
 $fullname = $js['name']." ".$js['surname'];
 $email = $js['name'].rand(10,99999)."@gmail.com";
